@@ -85,12 +85,7 @@
     <p class="date">29 มีนาคม 2569 (08.00 - 17.00 น.)</p>
 
     <div class="box">
-      <b>ขั้นตอนที่ 1: ตรวจสอบสิทธิ</b>
-      <button onclick="checkRight()">🔍 ตรวจสอบสิทธิ</button>
-    </div>
-
-    <div class="box">
-      <b>ขั้นตอนที่ 2: ค้นหาหน่วยเลือกตั้ง</b>
+      <b>ค้นหาหน่วยเลือกตั้ง</b>
 
       <select id="location">
         <option value="">-- เลือกหน่วยเลือกตั้ง --</option>
@@ -133,10 +128,6 @@
   </div>
 
   <script>
-    function checkRight() {
-      window.open("https://boraservices.bora.dopa.go.th", "_blank");
-    }
-
     function openMap() {
       const loc = document.getElementById("location").value;
 
