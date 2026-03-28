@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: "Prompt", sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 350px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .title {
+      color: #0d6efd;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .sub {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .date {
+      font-size: 14px;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .box {
+      background: #f8f9fa;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #6c757d;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #5a6268;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2 class="title">📍 พิกัดหน่วยเลือกตั้ง</h2>
+    <p class="sub">เทศบาลตำบลชัยมงคล</p>
+    <p class="date">29 มีนาคม 2569 (08.00 - 17.00 น.)</p>
+
+    <div class="box">
+      <b>ขั้นตอนที่ 1: ตรวจสอบสิทธิ</b>
+      <button onclick="checkRight()">🔍 ตรวจสอบสิทธิ</button>
+    </div>
+
+    <div class="box">
+      <b>ขั้นตอนที่ 2: ค้นหาหน่วยเลือกตั้ง</b>
+
+      <select id="location">
+        <option value="">-- เลือกหน่วยเลือกตั้ง --</option>
+
+        <!-- 🔥 หน่วยที่แก้ให้แล้ว -->
+        <option value="https://maps.app.goo.gl/FVAHHyma8fDgrHtZA">
+          *เขตเลือกตั้งที่ 1 ของหน่วยเลือกตั้งที่ 1 หมู่ที่ 1 สถานที่เลือกตั้ง ศาลาประชาคมหมู่บ้าน (ศาลเจ้าพ่อใหญ่)
+
+        </option>
+
+        <!-- ตัวอย่างหน่วยอื่น -->
+        <option value="https://maps.app.goo.gl/xYsdYzhU9PYKr3Av8">
+          *เขตเลือกตั้งที่ 1 ของหน่วยเลือกตั้งที่ 2 หมู่ที่ 2 สถานที่เลือกตั้ง วัดพรหมคุณาราม ศาลาลุงพัตร์ (บางตะคอย)
+
+        </option>
+
+        <option value="https://maps.app.goo.gl/ZrsPCYonfYCdPCXp6">
+          *เขตเลือกตั้งที่ 1 ของหน่วยเลือกตั้งที่ 3 หมู่ที่ 3 (บางส่วน) สถานที่เลือกตั้ง ศาลาวัดชัยมงคล
+
+        </option>
+        <option value="https://maps.app.goo.gl/eWJV64z6AwpcBQ4a9">
+          *เขตเลือกตั้งที่ 2 ของหน่วยเลือกตั้งที่ 1 หมู่ที่ 4 สถานที่เลือกตั้ง ศาลาวัดปากบ่อ
+
+
+        </option>
+        <option value="https://maps.app.goo.gl/pj96z8xwMHZKaLUC6">
+          *เขตเลือกตั้งที่ 2 ของหน่วยเลือกตั้งที่ 2 หมู่ที่ 5 สถานที่เลือกตั้ง ศาลาวัดน่วมกานนท์
+
+        </option>
+        <option value="https://maps.app.goo.gl/SYL5zGXSzncTF4eQ8">
+          *เขตเลือกตั้งที่ 2 ของหน่วยเลือกตั้งที่ 3 หมู่ที่ 6 และหมู่ที่ 3 (บางส่วน) สถานที่เลือกตั้ง
+          ศาลาประชาคมบ้านรวมเจริญ
+
+
+        </option>
+      </select>
+
+      <button onclick="openMap()">📍 เปิด Google Maps</button>
+    </div>
+  </div>
+
+  <script>
+    function checkRight() {
+      window.open("https://boraservices.bora.dopa.go.th", "_blank");
+    }
+
+    function openMap() {
+      const loc = document.getElementById("location").value;
+
+      if (!loc) {
+        alert("กรุณาเลือกหน่วยเลือกตั้ง");
+        return;
+      }
+
+      // รองรับทั้ง "ลิงก์" และ "พิกัด"
+      if (loc.startsWith("http")) {
+        window.open(loc, "_blank");
+      } else {
+        const url = "https://www.google.com/maps?q=" + loc;
+        window.open(url, "_blank");
+      }
+    }
+  </script>
+
+</body>
+
+</html>
